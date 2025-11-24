@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예비 집사 능력고사</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/gh/dunggeunmo/dunggeunmo/dunggeunmo.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DungGeunMo', sans-serif;
+            background-color: #FEF9E7;
+            color: #4A3B32;
+        }
+        .pixel-box {
+            box-shadow: -4px 0 0 0 #4A3B32, 4px 0 0 0 #4A3B32, 0 -4px 0 0 #4A3B32, 0 4px 0 0 #4A3B32;
+            background-color: white;
+        }
+        .pixel-btn {
+            background-color: #FFB347;
+            box-shadow: inset -4px -4px 0px 0px rgba(0,0,0,0.2), -4px 0 0 0 #4A3B32, 4px 0 0 0 #4A3B32, 0 -4px 0 0 #4A3B32, 0 4px 0 0 #4A3B32;
+            cursor: pointer;
+        }
+        .pixel-btn:active { transform: translateY(4px); box-shadow: inset -4px -4px 0px 0px rgba(0,0,0,0.2), -4px 0 0 0 #4A3B32, 4px 0 0 0 #4A3B32, 0 -4px 0 0 #4A3B32, 0 0 0 0 #4A3B32; }
+        .progress-container { border: 4px solid #4A3B32; background: #fff; height: 24px; width: 100%; }
+        .progress-bar { background: #FFB347; height: 100%; width: 0%; transition: width 0.3s ease; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
+
+    <div class="w-full max-w-md relative">
+        
+        <section id="intro" class="text-center fade-in">
+            <div class="mb-8">
+                <img src="https://i.imgur.com/8tJ8Z4h.png" alt="인트로 이미지" class="w-48 mx-auto mb-6 pixel-box p-2">
+                <h1 class="text-3xl mb-2 leading-tight">예비 집사<br>능력고사</h1>
+                <p class="text-sm opacity-80 mb-4">귀여움만으로는 키울 수 없어요!<br>나의 준비 상태를 점검해보세요.</p>
+            </div>
+            <button onclick="startQuiz()" class="pixel-btn w-full py-4 text-xl text-white mb-4">
+                테스트 시작하기 ▶
+            </button>
+            <p class="text-xs text-gray-500">현재 1,204명의 예비 집사가 참여했어요!</p>
+        </section>
+
+        <section id="quiz" class="hidden w-full fade-in">
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-2 font-bold">
+                    <span id="progress-text">Level 1</span>
+                    <span>10/10</span>
+                </div>
+                <div class="progress-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div class="pixel-box p-2 mb-4 flex items-center justify-center h-48 bg-white">
+                <img id="quiz-image" src="" alt="질문 이미지" class="max-h-full max-w-full object-contain">
+            </div>
+
+            <div class="pixel-box p-6 mb-6 min-h-[100px] flex items-center justify-center">
+                <h2 id="question-text" class="text-lg text-center leading-relaxed">
+                    질문이 여기에 들어갑니다.
+                </h2>
+            </div>
+
+            <div class="space-y-4">
+                <button onclick="selectOption(10)" id="btn-a" class="pixel-btn w-full py-4 text-white text-sm md:text-base px-2 leading-tight">
+                    A. 답변
+                </button>
+                <button onclick="selectOption(3)" id="btn-b" class="bg-gray-400 pixel-btn w-full py-4 text-white text-sm md:text-base px-2 leading-tight" style="background-color: #8D7B68;">
+                    B. 답변
+                </button>
+            </div>
+        </section>
+
+        <section id="result" class="hidden text-center fade-in">
+            <div class="pixel-box p-8 border-4 border-[#4A3B32] mb-6">
+                <img id="result-image" src="" alt="결과 이미지" class="w-40 mx-auto mb-4">
+                <div class="text-xl mb-2">나의 집사 점수는?</div>
+                <div id="score-display" class="text-5xl font-bold text-[#FFB347] mb-4 drop-shadow-sm">0점</div>
+                <div id="result-title" class="text-2xl mb-4 underline decoration-wavy decoration-[#FFB347]">결과 타이틀</div>
+                <p id="result-desc" class="text-sm leading-relaxed mb-6">
+                    결과 설명이 여기에 나옵니다.
+                </p>
+                
+                <div class="bg-gray-100 p-4 text-xs text-left border-2 border-[#4A3B32] mb-4">
+                    <strong>💡 현실 조언:</strong><br>
+                    <span id="result-advice">조언 내용</span>
+                </div>
+            </div>
+
+            <a href="#" class="block pixel-btn w-full py-4 text-white text-lg mb-3">
+                유기동물 보호소 알아보기 🐾
+            </a>
+            <button onclick="location.reload()" class="text-sm underline text-gray-500 hover:text-[#FFB347]">
+                처음부터 다시하기
+            </button>
+        </section>
+
+    </div>
+
+    <script>
+        // 데이터 (질문 리스트 및 이미지)
+        // **중요: 실제 서비스시에는 이미지를 서버에 올리고 해당 URL로 교체해야 합니다.**
+        const questions = [
+            { q: "퇴근 후 내 모습, 내 새끼에게 충분히 에너지를 쏟아줄 수 있나요?", a: "피곤해도 산책/놀이 30분은 필수!", b: "잠깐 눈만 마주치고 바로 뻗음...", img: "https://i.imgur.com/F8J8Z4h.png" }, // Q1 산책
+            { q: "갑자기 병원비로 100만 원이 나간다면? 나의 비상금 계좌 상태는?", a: "이 정도는 걱정 없지!", b: "이번 달 카드값도 빠듯한데...", img: "https://i.imgur.com/G8J8Z4h.png" }, // Q2 병원비
+            { q: "주말 아침 늦잠! 옆에서 '왈왈/야옹' 거리며 깨운다면?", a: "괜찮아, 내 새끼 밥 줘야지! 기상!", b: "아, 5분만 더... 이불 뒤집어쓰기", img: "https://i.imgur.com/H8J8Z4h.png" }, // Q3 늦잠
+            { q: "장기 출장이나 여행을 가게 된다면?", a: "믿음직한 펫시터/가족 섭외 완료!", b: "그때 가서 생각해야지...", img: "https://i.imgur.com/I8J8Z4h.png" }, // Q4 여행
+            { q: "가구와 벽지가 뜯기면 '쿨하게' 괜찮을 수 있나요?", a: "너만 행복하다면 괜찮아! (해탈)", b: "안 돼! 이건 명품인데! 절대 안 돼!", img: "https://i.imgur.com/J8J8Z4h.png" }, // Q5 가구
+            { q: "반려동물 털이 온 사방에 날린다면 청소는?", a: "매일 청소기/돌돌이로 깔끔하게!", b: "며칠에 한 번, 티 안 날 정도만 대충", img: "https://i.imgur.com/K8J8Z4h.png" }, // Q6 청소
+            { q: "아이가 배변 실수를 했을 때 첫 반응은?", a: "이유를 파악하고 다시 교육한다.", b: "소리 지르거나 한숨을 쉰다.", img: "https://i.imgur.com/L8J8Z4h.png" }, // Q7 배변
+            { q: "입양하려는 품종의 '단점(유전병 등)'을 아시나요?", a: "모두 파악했고 감당할 수 있어!", b: "그냥 예뻐서 데려올 생각이야.", img: "https://i.imgur.com/M8J8Z4h.png" }, // Q8 유전병
+            { q: "이사나 결혼 등 환경이 변해도 함께할 건가요?", a: "당연하지! 평생 내 가족이야.", b: "상황 봐서 고민해 봐야 할 듯...", img: "https://i.imgur.com/N8J8Z4h.png" }, // Q9 이사
+            { q: "관련 지식을 공부할 의향이 있나요?", a: "꾸준히 공부해서 베테랑 집사가 될래!", b: "정보 찾기 귀찮아, 대충 키울래.", img: "https://i.imgur.com/O8J8Z4h.png" }  // Q10 공부
+        ];
+
+        let currentStep = 0;
+        let totalScore = 0;
+
+        const introSection = document.getElementById('intro');
+        const quizSection = document.getElementById('quiz');
+        const resultSection = document.getElementById('result');
+        const quizImage = document.getElementById('quiz-image'); // 질문 이미지 태그
+        const questionText = document.getElementById('question-text');
+        const btnA = document.getElementById('btn-a');
+        const btnB = document.getElementById('btn-b');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+
+        function startQuiz() {
+            introSection.classList.add('hidden');
+            quizSection.classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const q = questions[currentStep];
+            quizImage.src = q.img; // 이미지 로드
+            questionText.innerText = q.q;
+            btnA.innerText = "A. " + q.a; 
+            btnB.innerText = "B. " + q.b;
+
+            const progress = ((currentStep + 1) / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.innerText = `Q.${currentStep + 1}`;
+        }
+
+        function selectOption(score) {
+            totalScore += score;
+            currentStep++;
+
+            if (currentStep < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizSection.classList.add('hidden');
+            resultSection.classList.remove('hidden');
+
+            const scoreDisplay = document.getElementById('score-display');
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+            const resultAdvice = document.getElementById('result-advice');
+            const resultImage = document.getElementById('result-image'); // 결과 이미지 태그
+
+            scoreDisplay.innerText = `${totalScore}점`;
+
+            if (totalScore >= 90) {
+                resultImage.src = "https://i.imgur.com/P8J8Z4h.png"; // 마스터 이미지
+                resultTitle.innerText = "🏆 준비된 마스터 집사";
+                resultDesc.innerText = "축하합니다! 당신은 반려동물을 가족으로 맞이할 준비가 완벽하게 되어있군요.";
+                resultAdvice.innerText = "이제 유기동물 보호소를 방문해 운명의 짝을 찾아보세요!";
+            } else if (totalScore >= 60) {
+                resultImage.src = "https://i.imgur.com/Q8J8Z4h.png"; // 새싹 이미지
+                resultTitle.innerText = "🌱 노력하는 새싹 집사";
+                resultDesc.innerText = "마음은 가득하지만, 현실적인 여건이나 지식이 조금 더 필요해요.";
+                resultAdvice.innerText = "산책 시간 확보나 비상금 마련 등 현실적인 부분을 조금 더 보완한 뒤 입양을 고려해보세요.";
+            } else {
+                resultImage.src = "https://i.imgur.com/R8J8Z4h.png"; // 랜선 이미지
+                resultTitle.innerText = "💻 아직은 랜선 집사가 딱!";
+                resultDesc.innerText = "아직은 시기상조인 것 같아요. 귀여움만 보고 데려오면 서로에게 상처가 될 수 있어요.";
+                resultAdvice.innerText = "당분간은 유튜브나 카페에서 랜선 이모/삼촌으로 활동하며 간접 체험을 먼저 해보는 건 어떨까요?";
+            }
+        }
+    </script>
+</body>
+</html>
