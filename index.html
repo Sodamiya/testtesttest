@@ -35,7 +35,7 @@
         
         <section id="intro" class="text-center fade-in">
             <div class="mb-8">
-                <img src="https://i.imgur.com/8tJ8Z4h.png" alt="인트로 이미지" class="w-48 mx-auto mb-6 pixel-box p-2">
+                <img src="./img/img_start.jpg" alt="인트로 이미지" class="w-48 mx-auto mb-6 pixel-box p-2">
                 <h1 class="text-3xl mb-2 leading-tight">예비 집사<br>능력고사</h1>
                 <p class="text-sm opacity-80 mb-4">귀여움만으로는 키울 수 없어요!<br>나의 준비 상태를 점검해보세요.</p>
             </div>
@@ -106,16 +106,16 @@
         // 데이터 (질문 리스트 및 이미지)
         // **중요: 실제 서비스시에는 이미지를 서버에 올리고 해당 URL로 교체해야 합니다.**
         const questions = [
-            { q: "퇴근 후 내 모습, 내 새끼에게 충분히 에너지를 쏟아줄 수 있나요?", a: "피곤해도 산책/놀이 30분은 필수!", b: "잠깐 눈만 마주치고 바로 뻗음...", img: "https://i.imgur.com/F8J8Z4h.png" }, // Q1 산책
-            { q: "갑자기 병원비로 100만 원이 나간다면? 나의 비상금 계좌 상태는?", a: "이 정도는 걱정 없지!", b: "이번 달 카드값도 빠듯한데...", img: "https://i.imgur.com/G8J8Z4h.png" }, // Q2 병원비
-            { q: "주말 아침 늦잠! 옆에서 '왈왈/야옹' 거리며 깨운다면?", a: "괜찮아, 내 새끼 밥 줘야지! 기상!", b: "아, 5분만 더... 이불 뒤집어쓰기", img: "https://i.imgur.com/H8J8Z4h.png" }, // Q3 늦잠
-            { q: "장기 출장이나 여행을 가게 된다면?", a: "믿음직한 펫시터/가족 섭외 완료!", b: "그때 가서 생각해야지...", img: "https://i.imgur.com/I8J8Z4h.png" }, // Q4 여행
-            { q: "가구와 벽지가 뜯기면 '쿨하게' 괜찮을 수 있나요?", a: "너만 행복하다면 괜찮아! (해탈)", b: "안 돼! 이건 명품인데! 절대 안 돼!", img: "https://i.imgur.com/J8J8Z4h.png" }, // Q5 가구
-            { q: "반려동물 털이 온 사방에 날린다면 청소는?", a: "매일 청소기/돌돌이로 깔끔하게!", b: "며칠에 한 번, 티 안 날 정도만 대충", img: "https://i.imgur.com/K8J8Z4h.png" }, // Q6 청소
-            { q: "아이가 배변 실수를 했을 때 첫 반응은?", a: "이유를 파악하고 다시 교육한다.", b: "소리 지르거나 한숨을 쉰다.", img: "https://i.imgur.com/L8J8Z4h.png" }, // Q7 배변
-            { q: "입양하려는 품종의 '단점(유전병 등)'을 아시나요?", a: "모두 파악했고 감당할 수 있어!", b: "그냥 예뻐서 데려올 생각이야.", img: "https://i.imgur.com/M8J8Z4h.png" }, // Q8 유전병
-            { q: "이사나 결혼 등 환경이 변해도 함께할 건가요?", a: "당연하지! 평생 내 가족이야.", b: "상황 봐서 고민해 봐야 할 듯...", img: "https://i.imgur.com/N8J8Z4h.png" }, // Q9 이사
-            { q: "관련 지식을 공부할 의향이 있나요?", a: "꾸준히 공부해서 베테랑 집사가 될래!", b: "정보 찾기 귀찮아, 대충 키울래.", img: "https://i.imgur.com/O8J8Z4h.png" }  // Q10 공부
+            { q: "퇴근 후 내 모습, 내 새끼에게 충분히 에너지를 쏟아줄 수 있나요?", a: "피곤해도 산책/놀이 30분은 필수!", b: "잠깐 눈만 마주치고 바로 뻗음...", img: "./img/img_01.jpg" }, // Q1 산책
+            { q: "갑자기 병원비로 100만 원이 나간다면? 나의 비상금 계좌 상태는?", a: "이 정도는 걱정 없지!", b: "이번 달 카드값도 빠듯한데...", img: "./img/img_02.jpg" }, // Q2 병원비
+            { q: "주말 아침 늦잠! 옆에서 '왈왈/야옹' 거리며 깨운다면?", a: "괜찮아, 내 새끼 밥 줘야지! 기상!", b: "아, 5분만 더... 이불 뒤집어쓰기", img: "./img/img_03.jpg" }, // Q3 늦잠
+            { q: "장기 출장이나 여행을 가게 된다면?", a: "믿음직한 펫시터/가족 섭외 완료!", b: "그때 가서 생각해야지...", img: "./img/img_04.jpg" }, // Q4 여행
+            { q: "가구와 벽지가 뜯기면 '쿨하게' 괜찮을 수 있나요?", a: "너만 행복하다면 괜찮아! (해탈)", b: "안 돼! 이건 명품인데! 절대 안 돼!", img: "./img/img_05.jpg" }, // Q5 가구
+            { q: "반려동물 털이 온 사방에 날린다면 청소는?", a: "매일 청소기/돌돌이로 깔끔하게!", b: "며칠에 한 번, 티 안 날 정도만 대충", img: "./img/img_06.jpg" }, // Q6 청소
+            { q: "아이가 배변 실수를 했을 때 첫 반응은?", a: "이유를 파악하고 다시 교육한다.", b: "소리 지르거나 한숨을 쉰다.", img: "./img/img_07.jpg" }, // Q7 배변
+            { q: "입양하려는 품종의 '단점(유전병 등)'을 아시나요?", a: "모두 파악했고 감당할 수 있어!", b: "그냥 예뻐서 데려올 생각이야.", img: "./img/img_08.jpg" }, // Q8 유전병
+            { q: "이사나 결혼 등 환경이 변해도 함께할 건가요?", a: "당연하지! 평생 내 가족이야.", b: "상황 봐서 고민해 봐야 할 듯...", img: "./img/img_09.jpg" }, // Q9 이사
+            { q: "관련 지식을 공부할 의향이 있나요?", a: "꾸준히 공부해서 베테랑 집사가 될래!", b: "정보 찾기 귀찮아, 대충 키울래.", img: "./img/img_10.jpg" }  // Q10 공부
         ];
 
         let currentStep = 0;
@@ -173,17 +173,17 @@
             scoreDisplay.innerText = `${totalScore}점`;
 
             if (totalScore >= 90) {
-                resultImage.src = "../img/img_end_01.jpg"; // 마스터 이미지
+                resultImage.src = "./img/img_end_01.jpg"; // 마스터 이미지
                 resultTitle.innerText = "🏆 준비된 마스터 집사";
                 resultDesc.innerText = "축하합니다! 당신은 반려동물을 가족으로 맞이할 준비가 완벽하게 되어있군요.";
                 resultAdvice.innerText = "이제 유기동물 보호소를 방문해 운명의 짝을 찾아보세요!";
             } else if (totalScore >= 60) {
-                resultImage.src = "https://i.imgur.com/Q8J8Z4h.png"; // 새싹 이미지
+                resultImage.src = "./img/img_end_02.jpg"; // 새싹 이미지
                 resultTitle.innerText = "🌱 노력하는 새싹 집사";
                 resultDesc.innerText = "마음은 가득하지만, 현실적인 여건이나 지식이 조금 더 필요해요.";
                 resultAdvice.innerText = "산책 시간 확보나 비상금 마련 등 현실적인 부분을 조금 더 보완한 뒤 입양을 고려해보세요.";
             } else {
-                resultImage.src = "https://i.imgur.com/R8J8Z4h.png"; // 랜선 이미지
+                resultImage.src = "./img/img_end_03.jpg"; // 랜선 이미지
                 resultTitle.innerText = "💻 아직은 랜선 집사가 딱!";
                 resultDesc.innerText = "아직은 시기상조인 것 같아요. 귀여움만 보고 데려오면 서로에게 상처가 될 수 있어요.";
                 resultAdvice.innerText = "당분간은 유튜브나 카페에서 랜선 이모/삼촌으로 활동하며 간접 체험을 먼저 해보는 건 어떨까요?";
