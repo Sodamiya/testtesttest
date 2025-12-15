@@ -56,9 +56,11 @@
         .hidden { display: none; }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center min-h-screen p-4 overflow-hidden">
+<!-- 수정됨: overflow-hidden, justify-center 제거 (스크롤 가능 및 안전한 정렬) -->
+<body class="flex flex-col items-center min-h-screen p-4">
 
-    <div class="w-full max-w-md relative">
+    <!-- 수정됨: my-auto 추가 (세로 중앙 정렬) -->
+    <div class="w-full max-w-md relative my-auto">
         
         <section id="intro" class="text-center fade-in">
             <div class="mb-8">
